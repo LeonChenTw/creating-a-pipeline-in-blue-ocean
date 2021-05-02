@@ -4,8 +4,11 @@ pipeline {
       image 'node:6-alpine'
       args '-p 3000:3000'
     }
-
   }
+  parameters([
+        choice(choices: 'dev\nuat\nprod', description: 'Select environment to Build', name: 'env'),
+  ])
+  
   stages {
     stage('Build') {
       steps {
